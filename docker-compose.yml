@@ -9,7 +9,7 @@ services:
       - ./jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py
       - jupyterhub_data:/srv/jupyterhub/data
     ports:
-      - "8068:8000"
+      - "8069:8000"
     networks:
       - jupyterhub
 
