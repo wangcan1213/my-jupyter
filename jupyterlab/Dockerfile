@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y graphviz
 
 RUN apt-get update && apt-get install -y libgl1-mesa-glx
 
-COPY ./workdir/simhei.ttf /usr/share/fonts/
+COPY ./includes/simhei.ttf /usr/share/fonts/
 
 RUN fc-cache -fv
 
@@ -22,7 +22,6 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 
-	
 RUN mkdir -p /etc/sudoers.d \
     && echo "jovyan ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/notebook
 	
