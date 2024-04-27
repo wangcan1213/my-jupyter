@@ -2,16 +2,23 @@ version: '3.11.5'
 
 services:
   jupyterhub:
-    build: .
-    image: my_jupyterhub
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py
-      - jupyterhub_data:/srv/jupyterhub/data
+    build:
+      context: ./jupyterhub  
+      dockerfile: Dockerfile  
+    image: my_remote_jupyterhub
     ports:
       - "8069:8000"
-    networks:
-      - jupyterhub
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./jupyterhub/jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py
+      - jupyterhub_data:/srv/jupyterhub/data
+
+  lab:
+    build:
+      context: ./jupyterlab  
+      dockerfile: Dockerfile  
+    image: my_remote_jupyterlab
+
 
 volumes:
   jupyterhub_data:
