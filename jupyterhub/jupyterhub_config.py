@@ -18,7 +18,7 @@ c.JupyterHub.spawner_class = DockerSpawner
 c.NativeAuthenticator.create_system_users = True
 
 
-notebook_dir = os.environ.get('DOCKER_NOTEBOOK_DIR') or '/home/jovyan/work'
+notebook_dir = os.environ.get('DOCKER_NOTEBOOK_DIR') or '/home/jovyan/jupyter'
 c.DockerSpawner.notebook_dir = notebook_dir
 
 def pre_spawn_hook(spawner):
@@ -31,7 +31,7 @@ def pre_spawn_hook(spawner):
 c.DockerSpawner.pre_spawn_hook = pre_spawn_hook
 
 c.DockerSpawner.volumes = { 'jupyterhub-user-{username}': notebook_dir }
-c.DockerSpawner.image = "my_jupyterhub:latest"
+c.DockerSpawner.image = "my_remote_jupyterlab:latest"
 
 # root
 c.DockerSpawner.environment = {'GRANT_SUDO': 'yes'}
