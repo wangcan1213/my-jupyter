@@ -1,4 +1,6 @@
-FROM jupyter/base-notebook
+FROM jupyter/datascience-notebook
+
+RUN rmdir work
 
 USER root
 
@@ -24,8 +26,7 @@ RUN apt-get update \
 
 RUN mkdir -p /etc/sudoers.d \
     && echo "jovyan ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/notebook
-	
-RUN mkdir -p /home/jovyan/work \
-    && chmod -R 777 /home/jovyan/work
 
 USER jovyan
+	
+RUN mkdir ./jupyter && sudo chmod 777 ./jupyter
