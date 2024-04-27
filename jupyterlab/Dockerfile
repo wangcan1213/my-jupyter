@@ -10,7 +10,6 @@ COPY ./workdir/simhei.ttf /usr/share/fonts/
 
 RUN fc-cache -fv
 
-USER $NB_UID
 
 RUN pip install --no-cache \
     numpy pandas matplotlib scikit-learn graphviz  \
@@ -21,6 +20,8 @@ RUN apt-get update \
     && apt-get install -y git \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+USER jovyan
 	
 RUN mkdir -p /etc/sudoers.d \
     && echo "jovyan ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/notebook
