@@ -21,10 +21,12 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-USER jovyan
+
 	
 RUN mkdir -p /etc/sudoers.d \
     && echo "jovyan ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/notebook
 	
 RUN mkdir -p /home/jovyan/work \
     && chmod -R 777 /home/jovyan/work
+
+USER jovyan
