@@ -21,8 +21,7 @@ RUN mkdir -p /etc/sudoers.d \
 COPY jupyterhub_config.py /srv/jupyterhub/jupyterhub_config.py
 
 RUN mkdir -p /home/jovyan/work \
-    && chown -R 1000:100 /home/jovyan/work \
+    && chown -R jovyan:users /home/jovyan/work \
     && chmod -R 777 /home/jovyan/work
-
 
 
