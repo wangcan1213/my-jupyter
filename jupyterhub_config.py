@@ -21,12 +21,21 @@ c.NativeAuthenticator.create_system_users = True
 notebook_dir = os.environ.get('DOCKER_NOTEBOOK_DIR') or '/home/jovyan/work'
 c.DockerSpawner.notebook_dir = notebook_dir
 
+def pre_spawn_hook(spawner):
+    username = spawner.user.name  
+    volume_path = f"/home/jupyter/jupyterhub-files/{username}"
+    if not os.path.exists(volume_path):
+        os.makedirs(volume_path, exist_ok=True)
+    os.chmod(volume_path, 0o777) 
+
+c.DockerSpawner.pre_spawn_hook = pre_spawn_hook
+
 c.DockerSpawner.volumes = { 'jupyterhub-user-{username}': notebook_dir }
 c.DockerSpawner.image = "jupyter/datascience-notebook:latest"
 
 # root
 c.DockerSpawner.environment = {'GRANT_SUDO': 'yes'}
-c.DockerSpawner.extra_create_kwargs = {'user': 'root'}
+c.DockerSpawner.extra_create_kwargs = {'user': 'jovyan'}
 
 # Persistence
 c.JupyterHub.db_url = "sqlite:///data/jupyterhub.sqlite"
