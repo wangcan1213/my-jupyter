@@ -31,7 +31,7 @@ def pre_spawn_hook(spawner):
 c.DockerSpawner.pre_spawn_hook = pre_spawn_hook
 
 c.DockerSpawner.volumes = { 'jupyterhub-user-{username}': notebook_dir }
-c.DockerSpawner.image = "jupyter/datascience-notebook:latest"
+c.DockerSpawner.image = "my_jupyterhub:latest"
 
 # root
 c.DockerSpawner.environment = {'GRANT_SUDO': 'yes'}
