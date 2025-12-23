@@ -48,3 +48,4 @@ c.DockerSpawner.volumes = {
 c.Authenticator.allowed_users = set()
 c.Authenticator.admin_users = {'admin', 'wangcan'}
 c.NativeAuthenticator.open_signup = True
+c.NativeAuthenticator.allow_all = True
