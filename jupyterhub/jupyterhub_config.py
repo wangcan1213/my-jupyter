@@ -38,7 +38,7 @@ c.DockerSpawner.environment = {'GRANT_SUDO': 'yes'}
 c.DockerSpawner.extra_create_kwargs = {'user': 'jovyan'}
 
 # Persistence
-c.JupyterHub.db_url = "sqlite:///data/jupyterhub.sqlite"
+# c.JupyterHub.db_url = "sqlite:///data/jupyterhub.sqlite"
 c.DockerSpawner.volumes = {
     '/home/jupyter/jupyterhub-files/{username}': notebook_dir
 }
